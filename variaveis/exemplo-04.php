@@ -11,7 +11,9 @@
 	$ip = $_SERVER["REMOTE_ADDR"];
 	echo $ip;
 
-	
+	//pegar script que ta sendo executado
 	$ip = $_SERVER["SCRIPT_NAME"];
-	echo $ip;	
+	echo $ip;
+
+	
  ?>
