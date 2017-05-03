@@ -1,0 +1,16 @@
+web:
+ image: webdevops/php-apache
+ ports:
+ - "80:80"
+ links:
+ - db
+ volumes:
+ - ../$PWD/curso-php:/app/curso-php
+
+db:
+ image: mysql
+ environment:
+   MYSQL_ROOT_PASSWORD: root
+   MYSQL_DATABASE: dbphp7
+   MYSQL_USER: matheus
+   MYSQL_PASSWORD: souza
