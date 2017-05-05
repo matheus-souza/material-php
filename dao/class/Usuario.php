@@ -92,6 +92,20 @@
 		
 		}
 
+		//Inseri um novo usuario
+		public function insert() {
+			$sql = new Sql();
+
+			$results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+				':LOGIN'=>$this->getDeslogin(),
+				':PASSWORD'=>$this->getDessenha()
+			));
+
+			if (count($results) > 0) {
+				$this->setData($results[0]);
+			}
+		}
+
 		//atualiza um usuario
 		public function update($login, $password) {
 			$this->setDeslogin($login);
