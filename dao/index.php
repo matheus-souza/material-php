@@ -1,40 +1,50 @@
 <?php 
-
 	require_once("config.php");
 
-	//exibe um usuário
-	//$root = new Usuario();
+//exibe um usuário
+/*
+	$root = new Usuario();
 	
-	//$root->loadById(3);
-	//echo $root;
+	$root->loadById(1);
+	echo $root;
+*/
 
-	//exibe lista
-	//$lista = Usuario::getList();
+//exibe lista
+/*
+	$lista = Usuario::getList();
 
-	//echo json_encode($lista);
+	echo json_encode($lista);
+*/
 
-	//Carrega uma lista de usuários pelo login
-	//$search = Usuario::search("jo");
+//Carrega uma lista de usuários pelo login
+/*
+	$search = Usuario::search("jo");
 
-	//echo json_encode($search);
+	echo json_encode($search);
+*/
 
-	//carrega um usuario pelo login e senha
-	//$usuario = new Usuario();
-	//$usuario->login("root", "!@#$");
+//carrega um usuario pelo login e senha
+/*
+	$usuario = new Usuario();
+	$usuario->login("root", "!@#$");
 
-	//echo $usuario;
+	echo $usuario;
+*/
 
-	//insere novo usuario
-	//$aluno = new Usuario();
+//insere novo usuario
+/*
+	$aluno = new Usuario();
 
-	//$aluno->setDeslogin("aluno");
-	//$aluno->setDessenha("@lun0");
+	$aluno->setDeslogin("aluno");
+	$aluno->setDessenha("@lun0");
 
-	//$aluno->insert();
+	$aluno->insert();
 
-	//echo $aluno;
+	echo $aluno;
+*/
 
-	//atualizando usuario
+//atualizando usuario
+/*
 	$usuario = new Usuario();
 
 	$usuario->loadById(2);
@@ -42,4 +52,16 @@
 	$usuario->update("alterado", "altrede");
 
 	echo $usuario;
+*/
+
+//exclui um usuario
+
+	$usuario = new Usuario();
+
+	$usuario->loadById(5);
+
+	$usuario->delete();
+
+	echo $usuario;
+
  ?>
