@@ -1,7 +1,7 @@
 web:
  image: webdevops/php-apache
  ports:
- - "80:80"
+ - "15000:80"
  links:
  - db
  volumes:
