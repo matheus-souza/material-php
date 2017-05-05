@@ -37,6 +37,7 @@
 			$this->dtcadastro = $data;
 		}
 
+		//Lista apenas um usuario pela id
 		public function loadById($id) {
 			$sql = new Sql();
 
@@ -54,6 +55,7 @@
 			}
 		}
 
+		//retorna usuario pelo login e senha
 		public function login($login, $password) {
 			$sql = new Sql();
 
@@ -75,12 +77,14 @@
 			}
 		}
 
+		//retorna todos os usuarios
 		public static function getList() {
 			$sql = new Sql();
 
 			return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
 		}
 
+		//retorna usuarios pelo login
 		public static function search($login) {
 			$sql = new Sql();
 
