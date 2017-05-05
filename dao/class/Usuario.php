@@ -41,17 +41,12 @@
 		public function loadById($id) {
 			$sql = new Sql();
 
-			$result = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(
+			$results = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(
 				":ID"=>$id
 			));
 
-			if (count($result) > 0) {
-				$row = $result[0];
-
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDessenha($row['dessenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			if (count($results) > 0) {
+				$this->setData(results[0]);
 			}
 		}
 
@@ -59,22 +54,25 @@
 		public function login($login, $password) {
 			$sql = new Sql();
 
-			$result = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+			$results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
 				":LOGIN"=>$login,
 				":PASSWORD"=>$password
 			));
 
-			if (count($result) > 0) {
-				$row = $result[0];
-
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDessenha($row['dessenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			if (count($results) > 0) {
+				$this->setData($results[0]);
 			} else {
 				throw new Exception("Login e/ou senha inválidos", 1);
 				
 			}
+		}
+
+		//setta os dados no objeto
+		public function setData($data) {
+			$this->setIdusuario($data['idusuario']);
+				$this->setDeslogin($data['deslogin']);
+				$this->setDessenha($data['dessenha']);
+				$this->setDtcadastro(new DateTime($data['dtcadastro']));
 		}
 
 		//retorna todos os usuarios
