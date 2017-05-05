@@ -46,7 +46,7 @@
 			));
 
 			if (count($results) > 0) {
-				$this->setData(results[0]);
+				$this->setData($results[0]);
 			}
 		}
 
@@ -70,16 +70,16 @@
 		//setta os dados no objeto
 		public function setData($data) {
 			$this->setIdusuario($data['idusuario']);
-				$this->setDeslogin($data['deslogin']);
-				$this->setDessenha($data['dessenha']);
-				$this->setDtcadastro(new DateTime($data['dtcadastro']));
+			$this->setDeslogin($data['deslogin']);
+			$this->setDessenha($data['dessenha']);
+			$this->setDtcadastro(new DateTime($data['dtcadastro']));
 		}
 
 		//retorna todos os usuarios
 		public static function getList() {
 			$sql = new Sql();
 
-			return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+			return $sql->select("SELECT * FROM tb_usuarios ORDER BY idusuario;");
 		}
 
 		//retorna usuarios pelo login
@@ -118,6 +118,19 @@
 				':PASSWORD'=>$this->getDessenha(),
 				':ID'=>$this->getIdusuario()
 			));
+		}
+
+		public function delete() {
+			$sql = new Sql();
+
+			$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+				':ID'=>$this->getIdusuario()
+			));
+
+			$this->setIdusuario(0);
+			$this->setDeslogin("");
+			$this->setDessenha("");
+			$this->setDtcadastro(new DateTime());
 		}
 
 		public function __toString() {
