@@ -1,0 +1,13 @@
+{
+    "name": "root/tpl",
+    "authors": [
+        {
+            "name": "Matheus Henrique de Souza",
+            "email": "mh.matheussouza@gmail.com"
+        }
+    ],
+    "require": {
+    	"rain/raintpl": ">=3.0.0",
+        "phpmailer/phpmailer": "^5.2"
+    }
+}
