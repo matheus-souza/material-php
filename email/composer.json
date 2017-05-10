@@ -1,0 +1,12 @@
+{
+    "name": "email",
+    "authors": [
+        {
+            "name": "Matheus Henrique de Souza",
+            "email": "mh.matheussouza@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^5.2"
+    }
+}
