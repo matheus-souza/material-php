@@ -1,0 +1,9 @@
+{
+    "name": "matheush/test-composer",
+    "description": "Aula PHP 7",
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+    	"monolog/monolog":"1.0.*"
+    }
+}
