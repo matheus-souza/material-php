@@ -1,0 +1,12 @@
+{
+    "name": "root/slim",
+    "authors": [
+        {
+            "name": "Matheus Henrique de Souza",
+            "email": "mh.matheussouza@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.8.1"
+    }
+}
