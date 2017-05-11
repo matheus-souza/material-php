@@ -12,5 +12,9 @@ db:
  environment:
    MYSQL_ROOT_PASSWORD: root
    MYSQL_DATABASE: dbphp7
-   MYSQL_USER: matheus
-   MYSQL_PASSWORD: souza
+
+db_ecommerce:
+ image: mysql
+ environment:
+   MYSQL_ROOT_PASSWORD: root
+   MYSQL_DATABASE: db_ecommerce

@@ -1,0 +1,19 @@
+{
+    "name": "matheus-souza/ecommerce",
+    "authors": [
+        {
+            "name": "Matheus Henrique de Souza",
+            "email": "mh.matheussouza@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.8",
+        "phpmailer/phpmailer": "^5.2",
+        "rain/raintpl": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "vendor\\custom\\php-classes\\src"
+        }
+    }
+}
