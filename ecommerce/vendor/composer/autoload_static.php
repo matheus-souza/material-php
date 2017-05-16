@@ -57,7 +57,7 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         ),
         'Custom\\' => 
         array (
-            0 => __DIR__ . '/..' . '/custom/src',
+            0 => __DIR__ . '/..' . '/custom/src/db',
         ),
     );
 
