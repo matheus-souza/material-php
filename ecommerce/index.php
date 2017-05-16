@@ -7,7 +7,11 @@
 	$app = new \Slim\App;
 
 	$app->get('/', function () {
-		echo "OK";
+		$sql = new \Custom\db\Sql();
+
+		$results = $sql->select("SELECT * FROM tb_users");
+
+		echo json_encode($results);
 	});
 
 	$app->run();
