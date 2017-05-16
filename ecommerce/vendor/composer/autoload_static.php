@@ -28,6 +28,10 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         array (
             'FastRoute\\' => 10,
         ),
+        'C' => 
+        array (
+            'Custom\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -51,10 +55,10 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-    );
-
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/..' . '/custom/php-classes/src',
+        'Custom\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/custom/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -90,7 +94,6 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4::$classMap;
 
