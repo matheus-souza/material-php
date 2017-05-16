@@ -4,6 +4,7 @@ web:
  - "15000:80"
  links:
  - db
+ - db_ecommerce
  volumes:
  - ../$PWD/curso-php:/app/curso-php
 
