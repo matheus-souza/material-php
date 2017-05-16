@@ -7,7 +7,7 @@
 	$app = new \Slim\App;
 
 	$app->get('/', function () {
-		$sql = new \Custom\db\Sql();
+		$sql = new \Custom\Sql();
 
 		$results = $sql->select("SELECT * FROM tb_users");
 
