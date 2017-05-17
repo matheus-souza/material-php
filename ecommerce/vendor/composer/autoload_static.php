@@ -19,6 +19,7 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Page\\' => 5,
         ),
         'I' => 
         array (
@@ -46,6 +47,10 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Page\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/custom/page',
         ),
         'Interop\\Container\\' => 
         array (
