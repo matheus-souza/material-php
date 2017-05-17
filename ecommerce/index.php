@@ -6,15 +6,15 @@
 
 	use \Slim\App;
 	use \Db\Sql;
+	use \Page\Page;
 
 	$app = new App;
 
 	$app->get('/', function () {
-		$sql = new Sql();
+		
+		$page = new Page();
 
-		$results = $sql->select("SELECT * FROM tb_users");
-
-		echo json_encode($results);
+		$page->setTpl("index");
 	});
 
 	$app->run();
