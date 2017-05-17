@@ -17,8 +17,8 @@
 
 			// config
 			$config = array(
-			    "tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/",
-			    "cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
+			    "tpl_dir"       => "views/",
+			    "cache_dir"     => "views-cache/",
 			    "debug"         => true, // set to false to improve the speed
 			);
 
