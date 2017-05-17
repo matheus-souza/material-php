@@ -1,5 +1,5 @@
 <?php 
-	namespace Custom;
+	namespace db;
 	class Sql{
 		const HOSTNAME = "db_ecommerce";
 		const USERNAME = "root";

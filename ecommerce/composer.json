@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Custom\\": "vendor/custom/src/db"
+            "Db\\": "vendor/custom/db/"
         }
     }
 }

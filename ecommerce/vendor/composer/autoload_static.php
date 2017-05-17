@@ -28,9 +28,9 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         array (
             'FastRoute\\' => 10,
         ),
-        'C' => 
+        'D' => 
         array (
-            'Custom\\' => 7,
+            'Db\\' => 3,
         ),
     );
 
@@ -55,9 +55,9 @@ class ComposerStaticInit6b50a79b8d21037a88f40dea0c2c0bb4
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'Custom\\' => 
+        'Db\\' => 
         array (
-            0 => __DIR__ . '/..' . '/custom/src/db',
+            0 => __DIR__ . '/..' . '/custom/db',
         ),
     );
 
