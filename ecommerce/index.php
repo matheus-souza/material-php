@@ -4,10 +4,13 @@
 	
 	require_once("vendor/autoload.php");
 
-	$app = new \Slim\App;
+	use \Slim\App;
+	use \Db\Sql;
+
+	$app = new App;
 
 	$app->get('/', function () {
-		$sql = new \Db\Sql();
+		$sql = new Sql();
 
 		$results = $sql->select("SELECT * FROM tb_users");
 
