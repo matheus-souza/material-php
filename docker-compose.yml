@@ -8,6 +8,15 @@ web:
  volumes:
  - ../$PWD/curso-php:/app/curso-php
 
+ecommerce:
+ image: webdevops/php-apache
+ ports:
+ - "80:80"
+ links:
+ - db_ecommerce
+ volumes:
+ - ../$PWD/curso-php/ecommerce:/app
+
 db:
  image: mysql
  environment:
