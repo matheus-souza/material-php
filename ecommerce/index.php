@@ -7,6 +7,7 @@
 	use \Slim\App;
 	use \Db\Sql;
 	use \Page\Page;
+	use \Page\PageAdmin;
 
 	$app = new App;
 
@@ -16,6 +17,14 @@
 
 		$page->setTpl("index");
 	});
+
+	$app->get('/admin', function () {
+		
+		$page = new PageAdmin();
+
+		$page->setTpl("index");
+	});
+
 
 	$app->run();
 

@@ -12,12 +12,12 @@
 		];
 
 		//Cria o objeto do Rain e monta o header da pagina
-		public function __construct($opts = array()) {
+		public function __construct($opts = array(), $tpl_dir = "views/") {
 			$this->options = array_merge($this->defaults, $opts);
 
 			// config
 			$config = array(
-			    "tpl_dir"       => "views/",
+			    "tpl_dir"       => $tpl_dir,
 			    "cache_dir"     => "views-cache/",
 			    "debug"         => true, // set to false to improve the speed
 			);
