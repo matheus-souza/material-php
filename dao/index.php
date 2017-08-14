@@ -55,7 +55,7 @@
 */
 
 //exclui um usuario
-
+/*
 	$usuario = new Usuario();
 
 	$usuario->loadById(5);
@@ -63,5 +63,6 @@
 	$usuario->delete();
 
 	echo $usuario;
-
+*/
+	echo("Descomente a parte que deseja testar");
  ?>
