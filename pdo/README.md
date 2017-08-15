@@ -1,0 +1,1 @@
+Para que o [Exemplo-02.php](exemplo-02.php) funcione é necessário realizar a configuração do pdo_sqlsrv
