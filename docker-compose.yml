@@ -17,14 +17,28 @@ services:
    links:
    - db_ecommerce
    volumes:
-   - ../curso-php/ecommerce:/app
+   - ./ecommerce:/app
   db:
    image: mysql
    environment:
      MYSQL_ROOT_PASSWORD: root
      MYSQL_DATABASE: dbphp7
+   volumes:
+   - ./dumps/mysql/db:/dumps
   db_ecommerce:
    image: mysql
    environment:
      MYSQL_ROOT_PASSWORD: root
      MYSQL_DATABASE: db_ecommerce
+   volumes:
+   - ./dumps/mysql/ecommerce:/dumps
+  db_sqlserver:
+    image: microsoft/mssql-server-linux
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: Root9876	
+      MSSQL_PID: Developer
+    ports:
+    - "1401:1433"
+    volumes:
+    - ./dumps/sqlserver:/dumps
