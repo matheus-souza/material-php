@@ -1,4 +1,11 @@
 ecommerce/views-cache/
-ecommerce/vendor/
-
+ecommerce/vendor/bin/
+ecommerce/vendor/composer/
+ecommerce/vendor/container-interop/
+ecommerce/vendor/nikic/
+ecommerce/vendor/phpmailer/
+ecommerce/vendor/pimple/
+ecommerce/vendor/psr/
+ecommerce/vendor/rain/
+ecommerce/vendor/slim/
 \.idea/
