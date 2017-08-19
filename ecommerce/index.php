@@ -25,6 +25,12 @@
 		$page->setTpl("index");
 	});
 
+	$app->get('/admin/login', function () {
+	   $page = new PageAdmin(array("header" => false, "footer" => false));
+
+	   $page->setTpl("login");
+    });
+
 
 	$app->run();
 
