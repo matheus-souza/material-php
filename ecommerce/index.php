@@ -41,6 +41,14 @@
 	    header('Location: /admin');
 	    exit;
     });
+
+    $app->get('/admin/logout', function () {
+        User::logout();
+
+        header("Location: /admin/login");
+        exit;
+    });
+
 	$app->run();
 
  ?>
