@@ -8,7 +8,9 @@
 		private $tpl;
 		private $options = [];
 		private $defaults = [
-			"data"=>[]
+		    "header" => true,
+            "footer" => true,
+			"data" => []
 		];
 
 		//Cria o objeto do Rain e monta o header da pagina
@@ -28,7 +30,9 @@
 
 			$this->setData($this->options["data"]);
 
-			$this->tpl->draw("header");
+			if ($this->options["header"] === true) {
+                $this->tpl->draw("header");
+            }
 		}
 
 		//Carrega os dados passados para o template
@@ -47,7 +51,9 @@
 
 		//Monta o footer da pagina
 		public function __destruct() {
-			$this->tpl->draw("footer");
+		    if ($this->options["footer"] === true) {
+                $this->tpl->draw("footer");
+            }
 		}
 
 	}
