@@ -1,13 +1,15 @@
-<?php 
+<?php
 
 	use \Psr\Http\Message\ResponseInterface as Response;
-	
+
+    session_start();
 	require_once("vendor/autoload.php");
 
 	use \Slim\App;
 	use \Db\Sql;
 	use \Page\Page;
 	use \Page\PageAdmin;
+	use \Models\User;
 
 	$app = new App;
 
@@ -31,7 +33,12 @@
 	   $page->setTpl("login");
     });
 
+	$app->post('/admin/login', function () {
+	    User::login($_POST['login'], $_POST['password']);
 
+	    header('Location: /admin');
+	    exit;
+    });
 	$app->run();
 
  ?>
