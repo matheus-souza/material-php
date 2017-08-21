@@ -85,6 +85,12 @@
 
     });
 
+    $app->delete('/admin/users/:iduser', function ($iduser) {
+        User::verifyLogin();
+
+
+    });
+
 	$app->run();
 
  ?>
