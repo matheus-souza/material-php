@@ -73,6 +73,12 @@
         $page->setTpl("users-update");
     });
 
+    $app->post('/admin/users/create', function () {
+        User::verifyLogin();
+
+
+    });
+
 	$app->run();
 
  ?>
