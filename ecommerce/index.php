@@ -79,6 +79,12 @@
 
     });
 
+    $app->post('/admin/users/:iduser', function ($iduser) {
+        User::verifyLogin();
+
+
+    });
+
 	$app->run();
 
  ?>
