@@ -52,9 +52,13 @@
     $app->get('/admin/users', function () {
         User::verifyLogin();
 
+        $users = User::listAll();
+
         $page = new PageAdmin();
 
-        $page->setTpl("users");
+        $page->setTpl("users", array(
+            "users" => $users
+        ));
     });
 
     $app->get('/admin/users/create', function () {
