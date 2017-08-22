@@ -48,6 +48,12 @@ class User extends Model {
     public static function logout() {
         $_SESSION[User::SESSION] = NULL;
     }
+
+    public static function listAll() {
+        $sql = new Sql();
+
+        return $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING (idperson) ORDER BY b.desperson");
+    }
 }
 
 
