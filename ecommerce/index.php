@@ -6,6 +6,7 @@
 	require_once("vendor/autoload.php");
 
 	use \Slim\App;
+	use \Slim\Http\Request;
 	use \Db\Sql;
 	use \Page\Page;
 	use \Page\PageAdmin;
@@ -69,8 +70,18 @@
         $page->setTpl("users-create");
     });
 
-    $app->get('/admin/users/:iduser', function ($iduser) {
+    $app->get('/admin/users/{iduser}/delete', function (Request $request) {
         User::verifyLogin();
+
+        $user = new User();
+
+        $user->get((int)$request->getAttribute('iduser'));
+
+        $user->delete();
+
+        header("Location: /admin/users");
+        exit();
+    });
 
     $app->get('/admin/users/{iduser}', function (Request $request) {
         User::verifyLogin();
