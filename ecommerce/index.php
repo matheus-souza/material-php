@@ -102,10 +102,22 @@
         exit();
     });
 
-    $app->delete('/admin/users/:iduser', function ($iduser) {
+    $app->post('/admin/users/{iduser}', function (Request $request) {
         User::verifyLogin();
 
+        $user = new User();
 
+        $_POST["inadmin"] = (isset($_POST["inadmin"])) ? 1 : 0;
+
+        $user->get((int)$request->getAttribute('iduser'));
+
+        $user->setData($_POST);
+
+        $user->update();
+
+        header("Location: /admin/users");
+
+        exit();
     });
 
 	$app->run();
