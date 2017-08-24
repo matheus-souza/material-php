@@ -131,6 +131,12 @@
         exit();
     });
 
+    $app->get('/admin/forgot', function () {
+        $page = new PageAdmin(array("header" => false, "footer" => false));
+
+        $page->setTpl("forgot");
+    });
+
 	$app->run();
 
  ?>
