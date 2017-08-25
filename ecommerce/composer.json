@@ -15,7 +15,8 @@
         "psr-4": {
             "Db\\": "vendor/custom/db/",
             "Page\\": "vendor/custom/page/",
-            "Models\\": "vendor/custom/models"
+            "Models\\": "vendor/custom/models",
+            "Mail\\": "vendor/custom/mail"
         }
     }
 }
