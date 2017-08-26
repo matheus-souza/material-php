@@ -63,7 +63,7 @@ class User extends Model {
         $results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
             ":desperson" => $this->getdesperson(),
             ":deslogin" => $this->getdeslogin(),
-            ":despassword" => $this->getdespassword(),
+            ":despassword" => password_hash($this->getdespassword(), PASSWORD_DEFAULT),
             ":desemail" => $this->getdesemail(),
             ":nrphone" => $this->getnrphone(),
             ":inadmin" => $this->getinadmin()
@@ -136,7 +136,7 @@ class User extends Model {
 
                 $mailer = new Mailer($user["desemail"], $user["desperson"], "Redefinir senha", "forgot", array(
                     "name" => $user["desperson"],
-                    "link" => $link
+                    "link" => urldecode($link)
                 ));
 
                 $mailer->send();
