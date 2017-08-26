@@ -466,7 +466,8 @@ BEGIN
 	SELECT idperson INTO vidperson
     FROM tb_users
     WHERE iduser = piduser;
-    
+
+    DELETE FROM tb_userspasswordsrecoveries WHERE iduser = piduser;
     DELETE FROM tb_users WHERE iduser = piduser;
     DELETE FROM tb_persons WHERE idperson = vidperson;
     
