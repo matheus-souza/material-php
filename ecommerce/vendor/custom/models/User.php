@@ -144,6 +144,32 @@ class User extends Model {
             }
         }
     }
+
+    public static function validForgotDecryp($code) {
+        $idRecovery = openssl_decrypt(base64_decode($code), "AES-256-CBC", self::SECRET);
+
+        $sql = new Sql();
+
+        $results = $sql->select("
+            SELECT *
+            FROM tb_userspasswordsrecoveries a
+            INNER JOIN tb_users b
+            USING (iduser)
+            INNER JOIN tb_persons c
+            USING (idperson)
+            WHERE a.idrecovery = :idrecovevy
+            AND a.dtrecovery IS NULL 
+            AND DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();", array(
+                ":idrecovevy" => $idRecovery
+        ));
+
+        if (count($results) === 0) {
+            throw new \Exception("Não foi possível recuperar a senha.");
+        } else {
+            return $results[0];
+        }
+    }
+
 }
 
 
