@@ -170,6 +170,14 @@ class User extends Model {
         }
     }
 
+    public static function setForgotUsed($idRecovery) {
+        $sql = new Sql();
+
+        $sql->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE idrecovery = :idrecovery", array(
+            ":idrecovery"=>$idRecovery
+        ));
+    }
+
 }
 
 
