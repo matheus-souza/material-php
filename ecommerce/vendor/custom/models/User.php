@@ -2,12 +2,14 @@
 
 namespace models;
 
+use \Mail\Mailer;
 use \Db\Sql;
 use \Models\Model;
 
 class User extends Model {
 
     const SESSION = "User";
+    const SECRET = "d41d8cd98f00b204e9800998ecf8427e";
 
     public static function login($login, $password) {
         $sql = new Sql();
@@ -102,6 +104,45 @@ class User extends Model {
         $sql->query("CALL sp_users_delete(:iduser)", array(
             ":iduser" => $this->getiduser()
         ));
+    }
+
+    public static function getForgot($email) {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT *
+                                  FROM tb_persons a
+                                  INNER JOIN tb_users b
+                                  USING (idperson)
+                                  WHERE a.desemail = :email", array(":email" => $email));
+
+        if (count($results) === 0) {
+            throw new \Exception("Não é possível recuperar a senha.");
+        } else {
+            $user = $results[0];
+
+            $result = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip);", array(
+                ":iduser" => $user["iduser"],
+                ":desip" => $_SERVER["REMOTE_ADDR"]
+            ));
+
+            if (count($result) === 0) {
+                throw new \Exception("Não é possível recuperar a senha.");
+            } else {
+                $dataRecovery = $result[0];
+
+                $code = base64_encode(openssl_encrypt($dataRecovery["idrecovery"], "AES-256-CBC", self::SECRET));
+
+                $link = "localhost/admin/forgot/reset?code=$code";
+
+                $mailer = new Mailer($user["desemail"], $user["desperson"], "Redefinir senha", "forgot", array(
+                    "name" => $user["desperson"],
+                    "link" => $link
+                ));
+
+                $mailer->send();
+                return $result;
+            }
+        }
     }
 }
 
