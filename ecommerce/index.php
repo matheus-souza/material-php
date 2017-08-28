@@ -188,6 +188,12 @@
         ));
     });
 
+    $app->get('/admin/categories/create', function () {
+
+        $page = new PageAdmin();
+
+        $page->setTpl("categories-create");
+    });
 	$app->run();
 
  ?>
