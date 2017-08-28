@@ -194,6 +194,19 @@
 
         $page->setTpl("categories-create");
     });
+
+    $app->post('/admin/categories/create', function () {
+        $category = new Category();
+
+        $category->setData($_POST);
+
+        $category->save();
+
+        header("Location: /admin/categories");
+        exit();
+
+    });
+
 	$app->run();
 
  ?>
