@@ -11,6 +11,7 @@
 	use \Page\Page;
 	use \Page\PageAdmin;
 	use \Models\User;
+	use \Models\Category;
 
 	$app = new App;
 
@@ -175,6 +176,16 @@
         $page = new PageAdmin(array("header" => false, "footer" => false));
 
         $page->setTpl("forgot-reset-success");
+    });
+
+    $app->get('/admin/categories', function () {
+        $categories = Category::listAll();
+
+        $page = new PageAdmin();
+
+        $page->setTpl("categories", array(
+            "categories"=>$categories
+        ));
     });
 
 	$app->run();
