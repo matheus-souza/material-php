@@ -53,8 +53,8 @@ class Category extends Model {
     public function delete() {
         $sql = new Sql();
 
-        $sql->query("CALL sp_users_delete(:iduser)", array(
-            ":iduser" => $this->getiduser()
+        $sql->query("DELETE FROM tb_categories WHERE idcategory = :idcategory", array(
+            ":idcategory" => $this->getidcategory()
         ));
     }
 }
