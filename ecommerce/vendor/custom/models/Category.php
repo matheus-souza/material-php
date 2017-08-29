@@ -24,11 +24,11 @@ class Category extends Model {
         $this->setData($results[0]);
     }
 
-    public function get($iduser) {
+    public function get($idcategory) {
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING (idperson) WHERE a.iduser = :iduser", array(
-            ":iduser" => $iduser
+        $results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", array(
+            ":idcategory" => $idcategory
         ));
 
         $this->setData($results[0]);
