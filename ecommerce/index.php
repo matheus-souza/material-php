@@ -233,6 +233,21 @@
         ));
     });
 
+    $app->post('/admin/categories/{idcategory}', function (Request $request) {
+        User::verifyLogin();
+
+        $category = new Category();
+
+        $category->get((int)$request->getAttribute('idcategory'));
+
+        $category->setData($_POST);
+
+        $category->save();
+
+        header("Location: /admin/categories");
+        exit();
+    });
+
 	$app->run();
 
  ?>
