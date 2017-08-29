@@ -179,6 +179,8 @@
     });
 
     $app->get('/admin/categories', function () {
+        User::verifyLogin();
+
         $categories = Category::listAll();
 
         $page = new PageAdmin();
@@ -189,6 +191,7 @@
     });
 
     $app->get('/admin/categories/create', function () {
+        User::verifyLogin();
 
         $page = new PageAdmin();
 
@@ -196,6 +199,8 @@
     });
 
     $app->post('/admin/categories/create', function () {
+        User::verifyLogin();
+
         $category = new Category();
 
         $category->setData($_POST);
@@ -221,6 +226,7 @@
     });
 
     $app->get('/admin/categories/{idcategory}', function (Request $request) {
+        User::verifyLogin();
 
         $category = new Category();
 
