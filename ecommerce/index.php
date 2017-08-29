@@ -220,6 +220,19 @@
         exit();
     });
 
+    $app->get('/admin/categories/{idcategory}', function (Request $request) {
+
+        $category = new Category();
+
+        $category->get((int)$request->getAttribute('idcategory'));
+
+        $page = new PageAdmin();
+
+        $page->setTpl("categories-update", array(
+            'category'=>$category->getValues()
+        ));
+    });
+
 	$app->run();
 
  ?>
