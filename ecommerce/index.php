@@ -204,7 +204,20 @@
 
         header("Location: /admin/categories");
         exit();
+    });
 
+
+    $app->get('/admin/categories/{idcategory}/delete', function (Request $request) {
+        User::verifyLogin();
+
+        $category = new Category();
+
+        $category->get((int)$request->getAttribute('idcategory'));
+
+        $category->delete();
+
+        header("Location: /admin/categories");
+        exit();
     });
 
 	$app->run();
