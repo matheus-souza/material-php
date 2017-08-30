@@ -22,6 +22,8 @@ class Category extends Model {
         ));
 
         $this->setData($results[0]);
+
+        self::updateFile();
     }
 
     public function get($idcategory) {
@@ -40,6 +42,10 @@ class Category extends Model {
         $sql->query("DELETE FROM tb_categories WHERE idcategory = :idcategory", array(
             ":idcategory" => $this->getidcategory()
         ));
+
+        self::updateFile();
+    }
+
     public static function updateFile() {
         $categories = self::listAll();
 
