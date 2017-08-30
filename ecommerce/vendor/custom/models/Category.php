@@ -40,6 +40,16 @@ class Category extends Model {
         $sql->query("DELETE FROM tb_categories WHERE idcategory = :idcategory", array(
             ":idcategory" => $this->getidcategory()
         ));
+    public static function updateFile() {
+        $categories = self::listAll();
+
+        $html = array();
+
+        foreach ($categories as $value) {
+            array_push($html, "<li><a href='/categories/{$value['idcategory']}'>{$value['descategory']}</a></li>");
+
+            file_put_contents($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR."categories-menu.html", implode('', $html));
+        }
     }
 }
 ?>
