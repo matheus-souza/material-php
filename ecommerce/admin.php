@@ -1,5 +1,8 @@
 <?php
 
+use \Page\PageAdmin;
+use \Models\User;
+
 $app->get('/admin', function () {
 
     User::verifyLogin();

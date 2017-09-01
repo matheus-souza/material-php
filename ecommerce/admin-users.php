@@ -1,5 +1,8 @@
 <?php
 
+use \Slim\Http\Request;
+use \Page\PageAdmin;
+use \Models\User;
 
 $app->get('/admin/users', function () {
     User::verifyLogin();

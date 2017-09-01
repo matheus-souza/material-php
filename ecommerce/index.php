@@ -6,12 +6,7 @@
 	require_once("vendor/autoload.php");
 
 	use \Slim\App;
-	use \Slim\Http\Request;
-	use \Db\Sql;
 	use \Page\Page;
-	use \Page\PageAdmin;
-	use \Models\User;
-	use \Models\Category;
 
 	$app = new App;
 

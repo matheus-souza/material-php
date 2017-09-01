@@ -1,5 +1,10 @@
 <?php
 
+use \Slim\Http\Request;
+use \Page\PageAdmin;
+use \Models\User;
+use \Models\Category;
+
 $app->get('/admin/categories', function () {
     User::verifyLogin();
 

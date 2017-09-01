@@ -1,5 +1,9 @@
 <?php
 
+use \Slim\Http\Request;
+use \Page\Page;
+use \Models\Category;
+
 $app->get('/categories/{idcategory}', function (Request $request) {
     $category = new Category();
 
