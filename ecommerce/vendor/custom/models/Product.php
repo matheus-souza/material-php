@@ -10,7 +10,7 @@ class Product extends Model {
     public static function listAll() {
         $sql = new Sql();
 
-        return $sql->select("SELECT * FROM tb_products ORDER BY desproducts");
+        return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
     }
 
     public function save() {
