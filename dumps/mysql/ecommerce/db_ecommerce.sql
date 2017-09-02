@@ -227,7 +227,7 @@ DROP TABLE IF EXISTS `tb_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_products` (
-  `idproduct` int(11) NOT NULL,
+  `idproduct` int(11) NOT NULL AUTO_INCREMENT,
   `desproduct` varchar(64) NOT NULL,
   `vlprice` decimal(10,2) NOT NULL,
   `vlwidth` decimal(10,2) NOT NULL,
