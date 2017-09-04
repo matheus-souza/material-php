@@ -52,4 +52,21 @@ $app->get('/admin/products/{idproduct}', function (Request $request) {
         "product" => $product->getValues()
     ));
 });
+$app->post('/admin/products/{idproduct}', function (Request $request) {
+    User::verifyLogin();
+
+    $product = new Product();
+
+    $product->get((int)$request->getAttribute('idproduct'));
+
+    $product->setData($_POST);
+
+    $product->save();
+
+    $product->setPhoto($_FILES['file']);
+
+    header("Location: /admin/products");
+    exit();
+});
+
 ?>
