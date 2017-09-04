@@ -3,6 +3,7 @@
 use \Page\PageAdmin;
 use \Models\User;
 use \Models\Product;
+use \Slim\Http\Request;
 
 $app->get("/admin/products", function () {
     User::verifyLogin();
@@ -38,4 +39,17 @@ $app->post("/admin/products/create", function () {
 });
 
 
+$app->get('/admin/products/{idproduct}', function (Request $request) {
+    User::verifyLogin();
+
+    $product = new Product();
+
+    $product->get((int)$request->getAttribute('idproduct'));
+
+    $page = new PageAdmin();
+
+    $page->setTpl("products-update", array(
+        "product" => $product->getValues()
+    ));
+});
 ?>
