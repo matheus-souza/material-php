@@ -7,6 +7,7 @@
 
 	use \Slim\App;
 	use \Page\Page;
+    use \Models\Product;
 
 	$app = new App;
 
@@ -16,12 +17,17 @@
 	require_once "admin-login.php";
 	require_once "admin-categories.php";
 	require_once "admin-products.php";
+	require_once "functions.php";
 
     $app->get('/', function () {
 
+        $products = Product::listAll();
+
         $page = new Page();
 
-        $page->setTpl("index");
+        $page->setTpl("index", array(
+            'products' => Product::checkList($products)
+        ));
     });
 
 	$app->run();
