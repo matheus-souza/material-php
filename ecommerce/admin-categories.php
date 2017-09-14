@@ -4,6 +4,7 @@ use \Slim\Http\Request;
 use \Page\PageAdmin;
 use \Models\User;
 use \Models\Category;
+use \Models\Product;
 
 $app->get('/admin/categories', function () {
     User::verifyLogin();
@@ -95,6 +96,23 @@ $app->get('/admin/categories/{idcategory}/products', function (Request $request)
         'productsRelated'=>$category->getProducts(),
         'productsNotRelated'=>$category->getProducts(false)
     ]);
+});
+
+$app->get('/admin/categories/{idcategory}/products/{idproduct}/add', function (Request $request) {
+    User::verifyLogin();
+
+    $category = new Category();
+
+    $category->get((int)$request->getAttribute('idcategory'));
+
+    $product = new Product();
+
+    $product->get((int)$request->getAttribute('idproduct'));
+
+    $category->addProduct($product);
+
+    header("Location: /admin/categories/".(int)$request->getAttribute('idcategory')."/products");
+    exit();
 });
 
 ?>
