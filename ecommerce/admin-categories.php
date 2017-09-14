@@ -115,4 +115,21 @@ $app->get('/admin/categories/{idcategory}/products/{idproduct}/add', function (R
     exit();
 });
 
+$app->get('/admin/categories/{idcategory}/products/{idproduct}/remove', function (Request $request) {
+    User::verifyLogin();
+
+    $category = new Category();
+
+    $category->get((int)$request->getAttribute('idcategory'));
+
+    $product = new Product();
+
+    $product->get((int)$request->getAttribute('idproduct'));
+
+    $category->removeProduct($product);
+
+    header("Location: /admin/categories/".(int)$request->getAttribute('idcategory')."/products");
+    exit();
+});
+
 ?>
