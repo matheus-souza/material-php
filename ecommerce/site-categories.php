@@ -3,6 +3,7 @@
 use \Slim\Http\Request;
 use \Page\Page;
 use \Models\Category;
+use \Models\Product;
 
 $app->get('/categories/{idcategory}', function (Request $request) {
     $category = new Category();
@@ -13,7 +14,7 @@ $app->get('/categories/{idcategory}', function (Request $request) {
 
     $page->setTpl("category", array(
         "category"=>$category->getValues(),
-        "products"=>array()
+        "products"=>Product::checkList($category->getProducts())
     ));
 
 });
