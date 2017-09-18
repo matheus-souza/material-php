@@ -5,6 +5,7 @@ namespace models;
 use \Mail\Mailer;
 use \Db\Sql;
 use \Models\Model;
+use \Models\Product;
 
 class Category extends Model {
     public static function listAll() {
@@ -106,6 +107,11 @@ class Category extends Model {
 
         $resultsTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
+        return [
+            'data' => Product::checkList($results),
+            'total' => (int)$resultsTotal[0]['nrtotal'],
+            'pages' => ceil($resultsTotal[0]['nrtotal'] / $itemsPerPage),
+        ];
     }
 
     public function addProduct(Product $product) {
