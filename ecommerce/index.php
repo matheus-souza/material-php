@@ -12,12 +12,13 @@
 	$app = new App;
 
 	require_once "site-categories.php";
-	require_once "admin.php";
-	require_once "admin-users.php";
-	require_once "admin-login.php";
-	require_once "admin-categories.php";
-	require_once "admin-products.php";
-	require_once "functions.php";
+    require_once "site-producst.php";
+    require_once "admin.php";
+    require_once "admin-users.php";
+    require_once "admin-login.php";
+    require_once "admin-categories.php";
+    require_once "admin-products.php";
+    require_once "functions.php";
 
     $app->get('/', function () {
 
