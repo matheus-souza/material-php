@@ -122,5 +122,17 @@ class Product extends Model {
         $this->setData($rows[0]);
     }
 
+    public function getCategories() {
+        $sql = new Sql();
+
+        return $sql->select("
+            SELECT *
+            FROM tb_categories a
+            INNER JOIN tb_productscategories b
+            USING (idcategory)
+            WHERE b.idproduct = :idproduct", [
+                ':idproduct' => $this->getidproduct()
+        ]);
+    }
 }
 ?>
