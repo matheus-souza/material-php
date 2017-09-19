@@ -57,18 +57,17 @@ DROP TABLE IF EXISTS `tb_carts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_carts` (
-  `idcart` int(11) NOT NULL,
+  `idcart` int(11) NOT NULL AUTO_INCREMENT,
   `dessessionid` varchar(64) NOT NULL,
   `iduser` int(11) DEFAULT NULL,
-  `idaddress` int(11) DEFAULT NULL,
+  `deszipcode` char(8) DEFAULT NULL,
   `vlfreight` decimal(10,2) DEFAULT NULL,
+  `nrdays` int(11) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`),
-  KEY `fk_carts_addresses_idx` (`idaddress`),
-  CONSTRAINT `fk_carts_addresses` FOREIGN KEY (`idaddress`) REFERENCES `tb_addresses` (`idaddress`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carts_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -588,4 +587,34 @@ BEGIN
     SELECT * FROM tb_products WHERE idproduct = pidproduct;
 
 END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_carts_save`(
+pidcart INT,
+pdessessionid VARCHAR(64),
+piduser INT,
+pdeszipcode CHAR(8),
+pvlfreight DECIMAL(10,2),
+pnrdays INT
+)
+BEGIN
+    IF pidcart > 0 THEN
+        UPDATE tb_carts
+        SET
+            dessessionid = pdessessionid,
+            iduser = piduser,
+            deszipcode = pdeszipcode,
+            vlfreight = pvlfreight,
+            nrdays = pnrdays
+        WHERE idcart = pidcart;
+    ELSE
+        INSERT INTO tb_carts (dessessionid, iduser, deszipcode, vlfreight, nrdays)
+        VALUES(pdessessionid, piduser, pdeszipcode, pvlfreight, pnrdays);
+        SET pidcart = LAST_INSERT_ID();
+    END IF;
+
+    SELECT * FROM tb_carts WHERE idcart = pidcart;
+END;;
+
 DELIMITER ;
