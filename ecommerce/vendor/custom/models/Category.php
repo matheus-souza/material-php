@@ -98,8 +98,9 @@ class Category extends Model {
             SELECT SQL_CALC_FOUND_ROWS *
             FROM tb_products a
             INNER JOIN tb_productscategories b
-            USING(idproduct)
+            USING (idproduct)
             INNER JOIN tb_categories c
+            USING (idcategory)
             WHERE c.idcategory = :idcategory
             LIMIT $start, $itemsPerPage", [
             ':idcategory' => $this->getidcategory()
