@@ -32,7 +32,9 @@ class Cart extends Model {
             ':idcart' => $idcart
         ]);
 
-        $this->setData($results[0]);
+        if (count($results) > 0) {
+            $this->setData($results[0]);
+        }
     }
 }
 ?>
