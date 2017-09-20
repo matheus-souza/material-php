@@ -24,5 +24,15 @@ class Cart extends Model {
 
         $this->setData($results[0]);
     }
+
+    public function get(int $idcart) {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT * FROM tb_carts WHERE idcart = :idcart", [
+            ':idcart' => $idcart
+        ]);
+
+        $this->setData($results[0]);
+    }
 }
 ?>
