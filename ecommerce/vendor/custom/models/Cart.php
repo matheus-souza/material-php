@@ -10,6 +10,18 @@ use \Models\Product;
 class Cart extends Model {
 
     
+    public function getFromSessionId($idcart) {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT * FROM tb_carts WHERE dessessionid = :dessessionid", [
+            ':dessessionid' => session_id()
+        ]);
+
+        if (count($results) > 0) {
+            $this->setData($results[0]);
+        }
+    }
+
     public function save() {
         $sql = new Sql();
 
