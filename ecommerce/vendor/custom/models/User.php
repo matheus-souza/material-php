@@ -82,6 +82,16 @@ class User extends Model {
         $this->setData($results[0]);
     }
 
+    public static function getFromSession() {
+        $user = new User();
+
+        if (isset($_SESSION[self::SESSION]) && (int)$_SESSION[self::SESSION]['iduser'] > 0) {
+            $user->setData($_SESSION[self::SESSION]);
+        }
+
+        return $user;
+    }
+
     public function update() {
         $sql = new Sql();
 
