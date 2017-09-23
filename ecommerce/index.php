@@ -67,6 +67,19 @@
         exit();
     });
 
+    $app->get('/cart/{idproduct}/remove', function (Request $request) {
+        $product = new Product();
+
+        $product->get((int)$request->getAttribute('idproduct'));
+
+        $cart = Cart::getFromSession();
+
+        $cart->removeProduct($product, true);
+
+        header("Location: /cart");
+        exit();
+    });
+
 	$app->run();
 
  ?>
