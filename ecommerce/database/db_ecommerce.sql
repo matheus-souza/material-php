@@ -90,7 +90,7 @@ CREATE TABLE `tb_cartsproducts` (
   `idcartproduct` int(11) NOT NULL AUTO_INCREMENT,
   `idcart` int(11) NOT NULL,
   `idproduct` int(11) NOT NULL,
-  `dtremoved` datetime NOT NULL,
+  `dtremoved` datetime,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcartproduct`),
   KEY `FK_cartsproducts_carts_idx` (`idcart`),
