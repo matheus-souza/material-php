@@ -44,6 +44,10 @@ class Cart extends Model {
         return $cart;
     }
 
+    public function setToSession() {
+        $_SESSION[self::SESSION] = $this->getValues();
+    }
+
     public function getFromSessionId() {
         $sql = new Sql();
 
