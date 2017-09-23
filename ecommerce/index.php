@@ -54,6 +54,19 @@
         exit();
     });
 
+    $app->get('/cart/{idproduct}/minus', function (Request $request) {
+        $product = new Product();
+
+        $product->get((int)$request->getAttribute('idproduct'));
+
+        $cart = Cart::getFromSession();
+
+        $cart->removeProduct($product);
+
+        header("Location: /cart");
+        exit();
+    });
+
 	$app->run();
 
  ?>
