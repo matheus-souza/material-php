@@ -92,6 +92,22 @@ class User extends Model {
         return $user;
     }
 
+    public static function checkLogin($inAdmin = true) {
+        if (!isset($_SESSION[User::SESSION]) ||
+            !$_SESSION[User::SESSION] ||
+            !(int)$_SESSION[User::SESSION]["iduser"] > 0) {
+            return false;
+        } else {
+            if ($inAdmin === true && (boolean)$_SESSION[User::SESSION]['inadmin'] === true) {
+                return true;
+            } else if ($inAdmin === false) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public function update() {
         $sql = new Sql();
 
