@@ -25,8 +25,8 @@ class Cart extends Model {
     public function save() {
         $sql = new Sql();
 
-        $results = $sql->getselect("CALL sp_carts_save(:idcart, :dessessionid, :iduser, :deszipcode, :vlfreight, :nrdays)", [
-            ':idcart'=> $this->getidcart()(),
+        $results = $sql->select("CALL sp_carts_save(:idcart, :dessessionid, :iduser, :deszipcode, :vlfreight, :nrdays)", [
+            ':idcart'=> $this->getidcart(),
             ':dessessionid'=> $this->getdessessionid(),
             ':iduser'=> $this->getiduser(),
             ':deszipcode'=> $this->getdeszipcode(),
