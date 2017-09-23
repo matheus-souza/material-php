@@ -8,6 +8,7 @@
 	use \Slim\App;
 	use \Page\Page;
     use \Models\Product;
+    use \Models\Cart;
 
 	$app = new App;
 
@@ -32,6 +33,8 @@
     });
 
     $app->get('/cart', function () {
+        $cart = Cart::getFromSession();
+
         $page = new Page();
 
         $page->setTpl('cart');
