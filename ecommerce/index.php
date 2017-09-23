@@ -6,6 +6,7 @@
 	require_once("vendor/autoload.php");
 
 	use \Slim\App;
+    use \Slim\Http\Request;
 	use \Page\Page;
     use \Models\Product;
     use \Models\Cart;
@@ -38,6 +39,19 @@
         $page = new Page();
 
         $page->setTpl('cart');
+    });
+
+    $app->get('/cart/{idproduct}/add', function (Request $request) {
+        $product = new Product();
+
+        $product->get((int)$request->getAttribute('idproduct'));
+
+        $cart = Cart::getFromSession();
+
+        $cart->addProduct($product);
+
+        header("Location: /cart");
+        exit();
     });
 
 	$app->run();
