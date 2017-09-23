@@ -10,8 +10,39 @@ use \Models\User;
 
 class Cart extends Model {
 
-    
-    public function getFromSessionId($idcart) {
+    const SESSION = 'Cart';
+
+    public static function getFromSession() {
+        $cart = new Cart();
+
+        if (isset($_SESSION[self::SESSION]) && (int)$_SESSION[self::SESSION]['idcart'] > 0) {
+            $cart->get((int)$_SESSION[self::SESSION]['idcart']);
+        } else {
+            $cart->getFromSessionId();
+
+            if (!(int)$cart->getidcart() > 0) {
+                $data = [
+                    'dessessionid' => session_id()
+                ];
+
+                if (User::checkLogin(false)) {
+                    $user = User::getFromSession();
+
+                    $data['iduser'] = $user->getiduser();
+                }
+
+                $cart->setData($data);
+
+                $cart->save();
+
+                $cart->setToSession();
+
+            }
+
+        }
+
+        return $cart;
+    }
 
     public function getFromSessionId() {
         $sql = new Sql();
