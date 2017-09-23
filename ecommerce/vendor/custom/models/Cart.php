@@ -6,11 +6,14 @@ use \Mail\Mailer;
 use \Db\Sql;
 use \Models\Model;
 use \Models\Product;
+use \Models\User;
 
 class Cart extends Model {
 
     
     public function getFromSessionId($idcart) {
+
+    public function getFromSessionId() {
         $sql = new Sql();
 
         $results = $sql->select("SELECT * FROM tb_carts WHERE dessessionid = :dessessionid", [
