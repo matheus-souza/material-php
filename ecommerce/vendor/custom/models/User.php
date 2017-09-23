@@ -38,11 +38,12 @@ class User extends Model {
     }
 
     public static function verifyLogin($inAdmin = true) {
-        if (!isset($_SESSION[User::SESSION]) ||
-            !$_SESSION[User::SESSION] ||
-            !(int)$_SESSION[User::SESSION]["iduser"] > 0 ||
-            (bool)$_SESSION[User::SESSION]["inadmin"] != $inAdmin) {
-            header("Location: /admin/login");
+        if (!self::checkLogin($inAdmin)) {
+            if ($inAdmin) {
+                header("Location: /admin/login");
+            } else {
+                header("Location: /login");
+            }
             exit;
         }
     }
