@@ -157,6 +157,20 @@ class Cart extends Model {
         return str_replace(',', '.', $value);
     }
 
-    
+    public static function setMsgError($msg) {
+        $_SESSION[self::SESSION_ERROR] = $msg;
+    }
+
+    public static function getMsgError() {
+        $msg =  $_SESSION[self::SESSION_ERROR] ?? '';
+
+        self::clearMsgError();
+
+        return $msg;
+    }
+
+    public static function clearMsgError() {
+        $_SESSION[self::SESSION_ERROR] = null;
+    }
 }
 ?>
