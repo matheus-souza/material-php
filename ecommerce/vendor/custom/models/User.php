@@ -10,6 +10,7 @@ class User extends Model {
 
     const SESSION = "User";
     const SECRET = "d41d8cd98f00b204e9800998ecf8427e";
+    const ERROR = "UserError";
 
     public static function login($login, $password) {
         $sql = new Sql();
@@ -212,6 +213,22 @@ class User extends Model {
             ":password"=>password_hash($password, PASSWORD_DEFAULT),
             ":iduser"=>$this->getiduser()
         ));
+    }
+
+    public static function setMsgError($msg) {
+        $_SESSION[self::ERROR] = (string)$msg;
+    }
+
+    public static function getMsgError() {
+        $msg = $_SESSION[self::ERROR] ?? '';
+
+        self::clearMsgError();
+
+        return $msg;
+    }
+
+    public static function clearMsgError() {
+        $_SESSION[self::ERROR] = null;
     }
 }
 
