@@ -87,6 +87,15 @@
         exit();
     });
 
+    $app->post('/cart/freight', function () {
+        $cart = Cart::getFromSession();
+
+        $cart->setFreight($_POST['zipcode']);
+
+        header("Location: /cart");
+        exit();
+    });
+
 	$app->run();
 
  ?>
