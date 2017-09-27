@@ -95,6 +95,8 @@ class Cart extends Model {
             ":idcart" => $this->getidcart(),
             ":idproduct" => $product->getidproduct(),
         ]);
+
+        $this->updateFreight();
     }
 
     public function removeProduct(Product $product, $all = false) {
@@ -111,6 +113,8 @@ class Cart extends Model {
                 ":idproduct" => $product->getidproduct()
             ]);
         }
+
+        $this->updateFreight();
     }
 
     public function getProducts() {
@@ -228,6 +232,12 @@ class Cart extends Model {
 
     public static function clearMsgError() {
         $_SESSION[self::SESSION_ERROR] = null;
+    }
+
+    public function updateFreight() {
+        if ($this->getdeszipcode() != '') {
+            $this->setFreight($this->getdeszipcode());
+        }
     }
 }
 ?>
