@@ -158,11 +158,11 @@ class Cart extends Model {
     }
 
     public static function setMsgError($msg) {
-        $_SESSION[self::SESSION_ERROR] = $msg;
+        $_SESSION[self::SESSION_ERROR] = (string)$msg;
     }
 
     public static function getMsgError() {
-        $msg =  $_SESSION[self::SESSION_ERROR] ?? '';
+        $msg = $_SESSION[self::SESSION_ERROR] ?? '';
 
         self::clearMsgError();
 
