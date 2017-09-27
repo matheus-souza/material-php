@@ -114,4 +114,25 @@
         ]);
     });
 
+    $app->get('/login', function () {
+        $page = new Page();
+
+        $page->setTpl('login', [
+            'error' => User::getMsgError()
+        ]);
+    });
+
+    $app->post('/login', function () {
+        try {
+            User::login($_POST['login'], $_POST['password']);
+        } catch (Exception $e) {
+            User::setMsgError($e->getMessage());
+        }
+
+        header("Location: /checkout");
+        exit();
+    });
+
+$app->run();
+
  ?>
