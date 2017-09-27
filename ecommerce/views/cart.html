@@ -20,11 +20,11 @@
                     <div class="woocommerce">
 
                         <form action="/checkout">
-                            
+                            {if="$error != ''"}
                             <div class="alert alert-danger" role="alert">
-                            Error!
+                            {$error}
                             </div>
-
+                            {/if}
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
