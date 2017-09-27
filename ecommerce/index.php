@@ -10,6 +10,8 @@
 	use \Page\Page;
     use \Models\Product;
     use \Models\Cart;
+    use \Models\User;
+    use \Models\Address;
 
 	$app = new App;
 
@@ -97,6 +99,19 @@
         exit();
     });
 
-	$app->run();
+    $app->get('/checkout', function () {
+        User::verifyLogin(false);
+
+        $cart = Cart::getFromSession();
+
+        $address = new Address();
+
+        $page = new Page();
+
+        $page->setTpl('checkout', [
+            'cart' => $cart->getValues(),
+            'address' => $address->getValues()
+        ]);
+    });
 
  ?>
