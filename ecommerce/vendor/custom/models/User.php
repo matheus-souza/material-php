@@ -11,6 +11,7 @@ class User extends Model {
     const SESSION = "User";
     const SECRET = "d41d8cd98f00b204e9800998ecf8427e";
     const ERROR = "UserError";
+    const REGISTER_ERROR = "UserRegisterError";
 
     public static function login($login, $password) {
         $sql = new Sql();
@@ -229,6 +230,22 @@ class User extends Model {
 
     public static function clearMsgError() {
         $_SESSION[self::ERROR] = null;
+    }
+
+    public static function setMsgRegisterError($msg) {
+        $_SESSION[self::REGISTER_ERROR] = (string)$msg;
+    }
+
+    public static function getMsgRegisterError() {
+        $msg = $_SESSION[self::REGISTER_ERROR] ?? '';
+
+        self::clearMsgError();
+
+        return $msg;
+    }
+
+    public static function clearMsgRegisterError() {
+        $_SESSION[self::REGISTER_ERROR] = null;
     }
 }
 
