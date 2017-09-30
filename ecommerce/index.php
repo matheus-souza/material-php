@@ -118,7 +118,9 @@
         $page = new Page();
 
         $page->setTpl('login', [
-            'error' => User::getMsgError()
+            'error' => User::getMsgError(),
+            'errorRegister' => User::getMsgRegisterError(),
+            'registerValues' => $_SESSION['registerValues'] ?? ['name' => '', 'email' => '', 'phone' => '']
         ]);
     });
 
