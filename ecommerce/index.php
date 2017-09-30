@@ -246,6 +246,20 @@
         $page->setTpl("forgot-reset-success");
     });
 
+    $app->get('/profile', function () {
+        User::verifyLogin(false);
+
+        $user = User::getFromSession();
+
+        $page = new Page();
+
+        $page->setTpl("profile", [
+            'user' => $user->getValues(),
+            'profileMsg' => User::getMsgSuccess(),
+            'profileError' => User::getMsgError()
+        ]);
+    });
+
 $app->run();
 
  ?>
