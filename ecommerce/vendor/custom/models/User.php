@@ -144,7 +144,7 @@ class User extends Model {
         ));
     }
 
-    public static function getForgot($email) {
+    public static function getForgot($email, $inAdmin = true) {
         $sql = new Sql();
 
         $results = $sql->select("SELECT *
@@ -170,7 +170,12 @@ class User extends Model {
 
                 $code = base64_encode(openssl_encrypt($dataRecovery["idrecovery"], "AES-256-CBC", self::SECRET));
 
-                $link = "localhost/admin/forgot/reset?code=$code";
+                if ($inAdmin) {
+                    $link = "localhost/admin/forgot/reset?code=$code";
+                } else {
+                    $link = "localhost/forgot/reset?code=$code";
+                }
+
 
                 $mailer = new Mailer($user["desemail"], $user["desperson"], "Redefinir senha", "forgot", array(
                     "name" => $user["desperson"],
