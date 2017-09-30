@@ -260,6 +260,53 @@
         ]);
     });
 
+    $app->post('/profile', function () {
+        User::verifyLogin(false);
+
+        if (!isset($_POST['desperson']) || $_POST['desperson'] === '') {
+            User::setMsgError("Preencha o seu nome.");
+            header("Location: /profile");
+            exit();
+        }
+
+        if (!isset($_POST['desemail']) || $_POST['desemail'] === '') {
+            User::setMsgError("Preencha o e-mail.");
+            header("Location: /profile");
+            exit();
+        }
+
+        if (!isset($_POST['nrphone']) || $_POST['nrphone'] === '') {
+            User::setMsgError("Preencha o telefone.");
+            header("Location: /profile");
+            exit();
+        }
+
+        $user = User::getFromSession();
+
+        if ($_POST['desemail'] !== $user->getdesemail()) {
+            if (User::checkLoginExist($_POST['desemail'])) {
+                User::setMsgError("Este endereço de e-mail já está cadastrado.");
+                header("Location: /profile");
+                exit();
+            }
+        }
+
+        $_POST['inadmin'] = $user->getinadmin();
+        $_POST['despassword'] = $user->getdespassword();
+        $_POST['deslogin'] = $_POST['desemail'];
+
+        $user->setData($_POST);
+
+        $user->save();
+
+        User::setMsgSuccess("Dados salvos com sucesso!");
+
+        $_SESSION[User::SESSION] = $user->getValues();
+
+        header("Location: /profile");
+        exit();
+    });
+
 $app->run();
 
  ?>
