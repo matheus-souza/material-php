@@ -297,7 +297,7 @@
 
         $user->setData($_POST);
 
-        $user->save();
+        $user->update();
 
         User::setMsgSuccess("Dados salvos com sucesso!");
 
