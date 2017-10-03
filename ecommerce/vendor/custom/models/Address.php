@@ -26,5 +26,19 @@ class Address extends Model {
         return $data;
     }
 
+    public function loadFromCep($nrcep) {
+        $data = self::getCep($nrcep);
+
+        if (isset($data['logradouro']) && $data['logradouro'] != '') {
+            $this->setdesaddress($data['logradouro']);
+            $this->setdescomplement($data['complemento']);
+            $this->setdesdistrict($data['bairro']);
+            $this->setdescity($data['cidade']);
+            $this->setdesstate($data['uf']);
+            $this->setdescountry('Brasil');
+            $this->setnrzipcode($nrcep);
+        }
+
+    }
 }
 ?>
