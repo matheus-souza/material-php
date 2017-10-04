@@ -29,16 +29,13 @@ class Address extends Model {
     public function loadFromCep($nrcep) {
         $data = self::getCep($nrcep);
 
-        if (isset($data['logradouro']) && $data['logradouro'] != '') {
-            $this->setdesaddress($data['logradouro']);
-            $this->setdescomplement($data['complemento']);
-            $this->setdesdistrict($data['bairro']);
-            $this->setdescity($data['cidade']);
-            $this->setdesstate($data['uf']);
-            $this->setdescountry('Brasil');
-            $this->setnrzipcode($nrcep);
-        }
-
+        $this->setdesaddress($data['logradouro']);
+        $this->setdescomplement($data['complemento']);
+        $this->setdesdistrict($data['bairro']);
+        $this->setdescity($data['localidade']);
+        $this->setdesstate($data['uf']);
+        $this->setdescountry('Brasil');
+        $this->setnrzipcode($nrcep);
     }
 }
 ?>
