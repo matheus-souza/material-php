@@ -120,7 +120,8 @@
 
         $page->setTpl('checkout', [
             'cart' => $cart->getValues(),
-            'address' => $address->getValues()
+            'address' => $address->getValues(),
+            'products' => $cart->getProducts()
         ]);
     });
 
