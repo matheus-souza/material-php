@@ -8,6 +8,8 @@ use \Models\Model;
 use \Models\Product;
 
 class Address extends Model {
+    const SESSION_ERROR_CHECKOUT = 'SESSION_ERROR_CHECKOUT_CHECKOUT';
+    
     public static function getCep($nrcep) {
         $nrcep = str_replace('-', '', $nrcep);
         //http://viacep.com.br/ws/01001000/json/
@@ -57,6 +59,21 @@ class Address extends Model {
             $this->setData($results[0]);
         }
     }
+
+    public static function setMsgError($msg) {
+        $_SESSION[self::SESSION_ERROR_CHECKOUT] = (string)$msg;
+    }
+
+    public static function getMsgError() {
+        $msg = $_SESSION[self::SESSION_ERROR_CHECKOUT] ?? '';
+
+        self::clearMsgError();
+
+        return $msg;
+    }
+
+    public static function clearMsgError() {
+        $_SESSION[self::SESSION_ERROR_CHECKOUT] = null;
     }
 }
 ?>
