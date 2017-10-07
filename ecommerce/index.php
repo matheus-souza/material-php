@@ -392,6 +392,19 @@
         exit();
     });
 
+    $app->get('/order/{idorder}', function (Request $request) {
+        User::verifyLogin(false);
+
+        $order = new Order();
+        $order->get((int)$request->getAttribute('idorder'));
+
+        $page = new Page();
+
+        $page->setTpl('payment', [
+            'order' => $order->getValues()
+        ]);
+    });
+
 $app->run();
 
  ?>
