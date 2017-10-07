@@ -12,6 +12,8 @@
     use \Models\Cart;
     use \Models\User;
     use \Models\Address;
+    use \Models\Order;
+    use \Models\OrderStatus;
 
 	$app = new App;
 
@@ -182,7 +184,22 @@
 
         $address->save();
 
-        header("Location: /order");
+        $cart = Cart::getFromSession();
+
+        $totals = $cart->getCalculateTotal();
+
+        $order = new Order();
+        $order->setData([
+            'idcart' => $cart->getidcart(),
+            'iduser' => $user->getiduser(),
+            'idstatus' => OrderStatus::EM_ABERTO,
+            'idaddress' => $address->getidaddress(),
+            'vltotal' => $totals['vlprice'] + $cart->getvlfreight()
+        ]);
+
+        $order->save();
+
+        header("Location: /order/".$order->getidorder());
         exit();
     });
 
