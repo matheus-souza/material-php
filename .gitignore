@@ -9,3 +9,5 @@ ecommerce/vendor/psr/
 ecommerce/vendor/rain/
 ecommerce/vendor/slim/
 \.idea/
+
+ecommerce/res/site/img/products/*.jpg
