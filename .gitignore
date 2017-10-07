@@ -11,3 +11,5 @@ ecommerce/vendor/slim/
 \.idea/
 
 ecommerce/res/site/img/products/*.jpg
+
+ecommerce/res/boletophp/imagens/
