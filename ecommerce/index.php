@@ -108,10 +108,6 @@
         $cart = Cart::getFromSession();
 
         if (isset($_GET['zipcode'])) {
-            $_GET['zipcode'] = $cart->getdeszipcode();
-        }
-
-        if (isset($_GET['zipcode'])) {
             $address->loadFromCep($_GET['zipcode']);
 
             $cart->setdeszipcode($_GET['zipcode']);
@@ -121,13 +117,13 @@
             $cart->getCalculateTotal();
         }
 
-        if (!$address->getdesaddress()) $address->setdesaddress('');
-        if (!$address->getdescomplement()) $address->setdescomplement('');
-        if (!$address->getdesdistrict()) $address->setdesdistrict('');
-        if (!$address->getdescity()) $address->setdescity('');
-        if (!$address->getdesstate()) $address->setdesstate('');
-        if (!$address->getdescountry()) $address->setdescountry('');
-        if (!$address->getdeszipcode()) $address->setdeszipcode('');
+        if (is_null($address->getdesaddress())) $address->setdesaddress('');
+        if (is_null($address->getdescomplement())) $address->setdescomplement('');
+        if (is_null($address->getdesdistrict())) $address->setdesdistrict('');
+        if (is_null($address->getdescity())) $address->setdescity('');
+        if (is_null($address->getdesstate())) $address->setdesstate('');
+        if (is_null($address->getdescountry())) $address->setdescountry('');
+        if (is_null($address->getdeszipcode())) $address->setdeszipcode('');
 
         $page = new Page();
 
