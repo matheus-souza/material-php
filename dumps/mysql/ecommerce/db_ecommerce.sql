@@ -138,27 +138,24 @@ CREATE TABLE `tb_orders` (
   `idcart` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `idstatus` int(11) NOT NULL,
+  `idaddress` int(11) NOT NULL,
   `vltotal` decimal(10,2) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idorder`),
-  KEY `FK_orders_carts_idx` (`idcart`),
   KEY `FK_orders_users_idx` (`iduser`),
   KEY `fk_orders_ordersstatus_idx` (`idstatus`),
+  KEY `fk_orders_carts_idx` (`idcart`),
+  KEY `fk_orders_addresses_idx` (`idaddress`),
+  CONSTRAINT `fk_orders_addresses` FOREIGN KEY (`idaddress`) REFERENCES `tb_addresses` (`idaddress`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_carts` FOREIGN KEY (`idcart`) REFERENCES `tb_carts` (`idcart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_ordersstatus` FOREIGN KEY (`idstatus`) REFERENCES `tb_ordersstatus` (`idstatus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_orders`
---
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `tb_orders` WRITE;
 /*!40000 ALTER TABLE `tb_orders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_orders` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `tb_ordersstatus`
 --
@@ -650,6 +647,48 @@ BEGIN
     END IF;
 
     SELECT * FROM tb_addresses WHERE idaddress = pidaddress;
+
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_orders_save`(
+pidorder INT,
+pidcart int(11),
+piduser int(11),
+pidstatus int(11),
+pidaddress int(11),
+pvltotal decimal(10,2)
+)
+BEGIN
+
+	IF pidorder > 0 THEN
+
+		UPDATE tb_orders
+        SET
+			idcart = pidcart,
+            iduser = piduser,
+            idstatus = pidstatus,
+            idaddress = pidaddress,
+            vltotal = pvltotal
+		WHERE idorder = pidorder;
+
+    ELSE
+
+		INSERT INTO tb_orders (idcart, iduser, idstatus, idaddress, vltotal)
+        VALUES(pidcart, piduser, pidstatus, pidaddress, pvltotal);
+
+		SET pidorder = LAST_INSERT_ID();
+
+    END IF;
+
+    SELECT *
+    FROM tb_orders a
+    INNER JOIN tb_ordersstatus b USING(idstatus)
+    INNER JOIN tb_carts c USING(idcart)
+    INNER JOIN tb_users d ON d.iduser = a.iduser
+    INNER JOIN tb_addresses e USING(idaddress)
+    WHERE idorder = pidorder;
 
 END;;
 DELIMITER ;
