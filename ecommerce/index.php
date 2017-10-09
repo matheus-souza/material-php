@@ -190,7 +190,7 @@
             'iduser' => $user->getiduser(),
             'idstatus' => OrderStatus::EM_ABERTO,
             'idaddress' => $address->getidaddress(),
-            'vltotal' => $totals['vlprice'] + $cart->getvlfreight()
+            'vltotal' => $cart->getvltotal()
         ]);
 
         $order->save();
