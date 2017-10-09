@@ -479,6 +479,19 @@
         require_once ($path . 'layout_itau.php');
     });
 
+    $app->get('/profile/orders', function () {
+        User::verifyLogin(false);
+
+        $user = User::getFromSession();
+
+        $page = new Page();
+
+        $page->setTpl('profile-orders', [
+            'orders' => $user->getOrders()
+        ]);
+    });
+
+    });
 $app->run();
 
  ?>
