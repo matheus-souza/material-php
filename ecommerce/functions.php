@@ -34,4 +34,12 @@ function getCartNrQtd() {
     return $totals['nrqtd'];
 }
 
+function getCartVlSubtotal() {
+    $cart = Cart::getFromSession();
+
+    $price = $cart->getProductsTotals();
+
+    return formatPrice($price['vlprice']);
+}
+
 ?>
