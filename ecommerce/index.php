@@ -491,7 +491,26 @@
         ]);
     });
 
+    $app->get('/profile/orders/{idorder}', function (Request $request) {
+        User::verifyLogin(false);
+
+        $order = new Order();
+        $order->get((int)$request->getAttribute('idorder'));
+
+        $cart = new Cart();
+        $cart->get((int)$order->getidcart());
+
+        $cart->getCalculateTotal();
+
+        $page = new Page();
+
+        $page->setTpl('profile-orders-detail', [
+            'order' => $order->getValues(),
+            'cart' => $cart->getValues(),
+            'products' => $cart->getProducts()
+        ]);
     });
+
 $app->run();
 
  ?>
