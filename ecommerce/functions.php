@@ -1,6 +1,7 @@
 <?php
 
 use \Models\User;
+use \Models\Cart;
 use \Db\Sql;
 
 function formatPrice($vlprice) {
@@ -23,6 +24,14 @@ function getUserName()
     ]);
 
     return $result[0]['desperson'];
+}
+
+function getCartNrQtd() {
+    $cart = Cart::getFromSession();
+
+    $totals = $cart->getProductsTotals();
+
+    return $totals['nrqtd'];
 }
 
 ?>
