@@ -511,6 +511,17 @@
         ]);
     });
 
+    $app->get('/profile/change-password', function () {
+
+        User::verifyLogin(false);
+
+        $page = new Page();
+
+        $page->setTpl('profile-change-password', [
+            'changePassError' => User::getMsgError(),
+            'changePassSuccess' => User::getMsgSuccess()
+        ]);
+    });
 $app->run();
 
  ?>
