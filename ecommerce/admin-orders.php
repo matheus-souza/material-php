@@ -7,6 +7,18 @@ use \Models\OrderStatus;
 use \Models\Product;
 use \Slim\Http\Request;
 
+$app->get('/admin/orders/{idorder}/delete', function (Request $request) {
+    User::verifyLogin();
+
+    $order = new Order();
+
+    $order->get((int)$request->getAttribute('idorder'));
+
+    $order->delete();
+
+    header("Location: /admin/orders");
+    exit();
+});
 
 $app->post('/admin/orders/{idorder}/status', function (Request $request) {
     User::verifyLogin();
