@@ -49,6 +49,14 @@ class Order extends Model {
         }
     }
 
+    public function delete() {
+        $sql = new Sql();
+
+        $sql->query("DELETE FROM tb_orders WHERE idorder = :idorder", [
+            ':idorder' => $this->getidorder()
+        ]);
+    }
+
     public static function listAll() {
         $sql = new Sql();
 
