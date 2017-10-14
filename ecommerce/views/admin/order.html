@@ -50,8 +50,8 @@
             <div class="col-sm-4 invoice-col">
             <b>Pedido #{$order.idorder}</b><br>
             <br>
-            <b>Emitido em:</b> {function="format_date($order.dtregister)"}<br>
-            <b>Pago em:</b> {function="format_date($order.dtregister)"}
+            <b>Emitido em:</b> {function="formatDate($order.dtregister)"}<br>
+            <b>Pago em:</b> {function="formatDate($order.dtregister)"}
             </div>
             <!-- /.col -->
         </div>
@@ -75,7 +75,7 @@
                     <td>{$value.nrqtd}</td>
                     <td>{$value.desproduct}</td>
                     <td>{$value.idproduct}</td>
-                    <td>R${function="format_real($order.vltotal)"}</td>
+                    <td>R${function="formatPrice($order.vltotal)"}</td>
                 </tr>
                 {/loop}
                 </tbody>
@@ -119,15 +119,15 @@
                 <table class="table">
                 <tbody><tr>
                     <th style="width:50%">Subtotal:</th>
-                    <td>R${function="format_real($cart.vlsubtotal)"}</td>
+                    <td>R${function="formatPrice($cart.vlsubtotal)"}</td>
                 </tr>
                 <tr>
                     <th>Frete:</th>
-                    <td>R${function="format_real($cart.vlfreight)"}</td>
+                    <td>R${function="formatPrice($cart.vlfreight)"}</td>
                 </tr>
                 <tr>
                     <th>Total:</th>
-                    <td>R${function="format_real($cart.vltotal)"}</td>
+                    <td>R${function="formatPrice($cart.vltotal)"}</td>
                 </tr>
                 </tbody></table>
             </div>
