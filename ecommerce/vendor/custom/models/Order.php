@@ -5,6 +5,9 @@ namespace models;
 use \Db\Sql;
 
 class Order extends Model {
+    const ERROR = 'OrderError';
+    const SUCCESS = 'OrderSucces';
+
     public function save() {
         $sql = new Sql();
 
@@ -64,6 +67,37 @@ class Order extends Model {
                                         ORDER BY a.dtregister DESC");
 
         return $results;
+    }
+    public static function setError($msg) {
+        $_SESSION[self::ERROR] = (string)$msg;
+    }
+
+    public static function getError() {
+        $msg = $_SESSION[self::ERROR] ?? '';
+
+        self::clearError();
+
+        return $msg;
+    }
+
+    public static function clearError() {
+        $_SESSION[self::ERROR] = null;
+    }
+
+    public static function setSuccess($msg) {
+        $_SESSION[self::SUCCESS] = (string)$msg;
+    }
+
+    public static function getSuccess() {
+        $msg = $_SESSION[self::SUCCESS] ?? '';
+
+        self::clearSuccess();
+
+        return $msg;
+    }
+
+    public static function clearSuccess() {
+        $_SESSION[self::SUCCESS] = null;
     }
 }
 ?>
