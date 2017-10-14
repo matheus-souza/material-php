@@ -128,7 +128,7 @@ class Category extends Model {
             SELECT SQL_CALC_FOUND_ROWS *
               FROM tb_categories "
             . $searchSql .
-            "ORDER BY descategory
+            " ORDER BY descategory
              LIMIT $start, $itemsPerPage", [
             ':search' => '%'.$search.'%'
         ]);
