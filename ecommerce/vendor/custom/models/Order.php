@@ -3,6 +3,7 @@
 namespace models;
 
 use \Db\Sql;
+use \Models\Cart;
 
 class Order extends Model {
     const ERROR = 'OrderError';
@@ -76,6 +77,15 @@ class Order extends Model {
 
         return $results;
     }
+
+    public function getCart():Cart {
+        $cart = new Cart();
+
+        $cart->get((int)$this->getidcart());
+
+        return $cart;
+    }
+
     public static function setError($msg) {
         $_SESSION[self::ERROR] = (string)$msg;
     }
