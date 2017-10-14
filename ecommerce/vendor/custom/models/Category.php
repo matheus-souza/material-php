@@ -115,6 +115,33 @@ class Category extends Model {
         ];
     }
 
+    public static function getPage($page = 1, $itemsPerPage = 10, $search = null) {
+        $start = ($page-1)*$itemsPerPage;
+
+        $sql = new Sql();
+
+        if (strlen($search) > 0) {
+            $searchSql = " WHERE descategory LIKE :search ";
+        }
+
+        $results = $sql->select("
+            SELECT SQL_CALC_FOUND_ROWS *
+              FROM tb_categories "
+            . $searchSql .
+            "ORDER BY descategory
+             LIMIT $start, $itemsPerPage", [
+            ':search' => '%'.$search.'%'
+        ]);
+
+        $resultsTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        return [
+            'data' => $results,
+            'total' => (int)$resultsTotal[0]['nrtotal'],
+            'pages' => ceil($resultsTotal[0]['nrtotal'] / $itemsPerPage),
+        ];
+    }
+
     public function addProduct(Product $product) {
         $sql = new Sql();
 
