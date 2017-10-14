@@ -316,7 +316,7 @@ class User extends Model {
             SELECT SQL_CALC_FOUND_ROWS *
               FROM tb_users a
         INNER JOIN tb_persons b
-             USING (idperson)"
+             USING (idperson) "
              . $searchSql .
          "ORDER BY b.desperson
              LIMIT $start, $itemsPerPage", [
