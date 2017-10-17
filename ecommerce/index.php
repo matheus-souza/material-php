@@ -119,6 +119,7 @@
         }
 
         if (is_null($address->getdesaddress())) $address->setdesaddress('');
+        if (is_null($address->getdesnumber())) $address->setdesnumber('');
         if (is_null($address->getdescomplement())) $address->setdescomplement('');
         if (is_null($address->getdesdistrict())) $address->setdesdistrict('');
         if (is_null($address->getdescity())) $address->setdescity('');
