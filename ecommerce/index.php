@@ -196,9 +196,15 @@
         ]);
 
         $order->save();
-
-        header("Location: /order/".$order->getidorder()."/pagseguro");
-        exit();
+        
+        switch ((int)$_POST['payment-method']) {
+            case 1:
+                header("Location: /order/".$order->getidorder()."/pagseguro");
+                exit();
+            case 2:
+                header("Location: /order/".$order->getidorder()."/paypal");
+                exit();
+        }
     });
 
     $app->get('/order/{idorder}/pagseguro', function (Request $request) {
