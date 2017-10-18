@@ -226,6 +226,26 @@
         ]);
     });
 
+    $app->get('/order/{idorder}/paypal', function (Request $request) {
+        User::verifyLogin(false);
+
+        $order = new Order();
+
+        $order->get((int)$request->getAttribute('idorder'));
+
+        $cart = $order->getCart();
+
+        $page = new Page([
+            'header' => false,
+            'footer' => false
+        ]);
+
+        $page->setTpl('payment-paypal', [
+            'order' => $order->getValues(),
+            'cart' => $cart->getValues(),
+            'products' => $cart->getProducts(),
+        ]);
+    });
 
     $app->get('/login', function () {
         $page = new Page();
