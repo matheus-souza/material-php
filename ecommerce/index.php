@@ -197,9 +197,35 @@
 
         $order->save();
 
-        header("Location: /order/".$order->getidorder());
+        header("Location: /order/".$order->getidorder()."/pagseguro");
         exit();
     });
+
+    $app->get('/order/{idorder}/pagseguro', function (Request $request) {
+        User::verifyLogin(false);
+
+        $order = new Order();
+
+        $order->get((int)$request->getAttribute('idorder'));
+
+        $cart = $order->getCart();
+
+        $page = new Page([
+            'header' => false,
+            'footer' => false
+        ]);
+
+        $page->setTpl('payment-pagseguro', [
+            'order' => $order->getValues(),
+            'cart' => $cart->getValues(),
+            'products' => $cart->getProducts(),
+            'phone' => [
+                'areaCode' => substr($order->getnrphone(), 0, 2),
+                'number' => substr($order->getnrphone(), 2, strlen($order->getnrphone()))
+            ]
+        ]);
+    });
+
 
     $app->get('/login', function () {
         $page = new Page();
