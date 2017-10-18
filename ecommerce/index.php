@@ -196,7 +196,7 @@
         ]);
 
         $order->save();
-        
+
         switch ((int)$_POST['payment-method']) {
             case 1:
                 header("Location: /order/".$order->getidorder()."/pagseguro");
