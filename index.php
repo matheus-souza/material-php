@@ -17,7 +17,7 @@
         </div>
         <div class="col-sm">
             <a class="btn btn-primary" href="/exemplos" role="button">Exemplos de PHP</a>
-            <a class="btn btn-primary" href="localhost:8000" role="button">Ecommerce</a>
+            <a class="btn btn-primary" href="http://localhost:15000/" role="button">Ecommerce</a>
         </div>
         <div class="col-sm">
         </div>
