@@ -3,17 +3,17 @@ services:
   web:
    image: webdevops/php-apache
    ports:
-   - "15000:80"
+   - "80:80"
    links:
    - db
    - db_ecommerce
    - db_sqlserver
    volumes:
-   - ../curso-php:/app/curso-php
+   - .:/app
   ecommerce:
    image: webdevops/php-apache
    ports:
-   - "80:80"
+   - "8000:80"
    links:
    - db_ecommerce
    volumes:
