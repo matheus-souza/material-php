@@ -21,7 +21,7 @@ docker-compose up -d
 - [Date](./exemplos/date)
 - [Dir](./exemplos/dir)
 - [Download](./exemplos/download)
-- [Dumps](./exemplos/dumps)
+- [Dumps](dumps)
 - [Ecommerce](./exemplos/ecommerce)
 - [Email](./exemplos/email)
 - [Erro](./exemplos/erro)
