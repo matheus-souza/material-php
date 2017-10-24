@@ -7,7 +7,7 @@
 ```bash
 docker-compose up -d
 ```
- - Acessar [http://localhost/](localhost)
+ - Acessar [localhost](http://localhost/)
 
 **Sumário**
 - [Arrays](./exemplos/arrays)
