@@ -1,7 +1,7 @@
 <?php
 
-use \Page\PageAdmin;
-use \Models\User;
+use Models\User;
+use Page\PageAdmin;
 
 $app->get('/admin/forgot', function () {
     $page = new PageAdmin(array("header" => false, "footer" => false));

@@ -1,9 +1,9 @@
 <?php
 
-use \Page\PageAdmin;
-use \Models\User;
-use \Models\Product;
-use \Slim\Http\Request;
+use Models\Product;
+use Models\User;
+use Page\PageAdmin;
+use Slim\Http\Request;
 
 $app->get("/admin/products", function () {
     User::verifyLogin();
@@ -17,18 +17,18 @@ $app->get("/admin/products", function () {
 
     for ($x = 0; $x < $pagination['pages']; $x++) {
         array_push($pages, [
-            'href' => '/admin/products?'.http_build_query([
-                    'page' => $x+1,
+            'href' => '/admin/products?' . http_build_query([
+                    'page' => $x + 1,
                     'search' => $search
                 ]),
-            'text'=>$x+1
+            'text' => $x + 1
         ]);
     }
 
     $page = new PageAdmin();
 
     $page->setTpl("products", array(
-        "products"  => $pagination['data'],
+        "products" => $pagination['data'],
         "search" => $search,
         "pages" => $pages
     ));

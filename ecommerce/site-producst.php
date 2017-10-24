@@ -1,9 +1,8 @@
 <?php
 
-use \Slim\Http\Request;
-use \Page\Page;
-use \Models\Category;
-use \Models\Product;
+use Models\Product;
+use Page\Page;
+use Slim\Http\Request;
 
 $app->get('/products/{desurl}', function (Request $request) {
     $product = new Product();
@@ -12,11 +11,9 @@ $app->get('/products/{desurl}', function (Request $request) {
 
     $page = new Page();
 
-//    die(var_dump($product->getCategories()));
-
     $page->setTpl('product-detail', [
         'product' => $product->getValues(),
-        'categories'=> $product->getCategories()
+        'categories' => $product->getCategories()
     ]);
 });
 

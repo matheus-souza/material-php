@@ -1,8 +1,8 @@
 <?php
 
-use \Slim\Http\Request;
-use \Page\PageAdmin;
-use \Models\User;
+use Models\User;
+use Page\PageAdmin;
+use Slim\Http\Request;
 
 $app->get('/admin/users/{iduser}/password', function (Request $request) {
     User::verifyLogin();
@@ -73,11 +73,11 @@ $app->get('/admin/users', function () {
 
     for ($x = 0; $x < $pagination['pages']; $x++) {
         array_push($pages, [
-            'href' => '/admin/users?'.http_build_query([
-                    'page' => $x+1,
+            'href' => '/admin/users?' . http_build_query([
+                    'page' => $x + 1,
                     'search' => $search
                 ]),
-            'text'=>$x+1
+            'text' => $x + 1
         ]);
     }
 

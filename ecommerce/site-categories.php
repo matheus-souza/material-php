@@ -1,9 +1,8 @@
 <?php
 
-use \Slim\Http\Request;
-use \Page\Page;
-use \Models\Category;
-use \Models\Product;
+use Models\Category;
+use Page\Page;
+use Slim\Http\Request;
 
 $app->get('/categories/{idcategory}', function (Request $request) {
     $page = $_GET['page'] ?? 1;
@@ -18,17 +17,17 @@ $app->get('/categories/{idcategory}', function (Request $request) {
 
     for ($i = 1; $i <= $pagination['pages']; $i++) {
         array_push($pages, [
-            'link'=>'/categories/'.$category->getidcategory().'?page='.$i,
-            'page'=>$i
+            'link' => '/categories/' . $category->getidcategory() . '?page=' . $i,
+            'page' => $i
         ]);
     }
 
     $page = new Page();
 
     $page->setTpl("category", array(
-        "category"=>$category->getValues(),
-        "products"=>$pagination['data'],
-        "pages"=>$pages
+        "category" => $category->getValues(),
+        "products" => $pagination['data'],
+        "pages" => $pages
     ));
 
 });

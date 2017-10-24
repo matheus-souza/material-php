@@ -1,11 +1,10 @@
 <?php
 
-use \Page\PageAdmin;
-use \Models\User;
-use \Models\Order;
-use \Models\OrderStatus;
-use \Models\Product;
-use \Slim\Http\Request;
+use Models\Order;
+use Models\OrderStatus;
+use Models\User;
+use Page\PageAdmin;
+use Slim\Http\Request;
 
 $app->get('/admin/orders/{idorder}/delete', function (Request $request) {
     User::verifyLogin();
@@ -28,7 +27,7 @@ $app->post('/admin/orders/{idorder}/status', function (Request $request) {
     if (!isset($_POST['idstatus']) || !(int)$_POST['idstatus'] > 0) {
         Order::setError("Informe o status atual.");
 
-        header("Location: /admin/orders/".$idOrder."/status");
+        header("Location: /admin/orders/" . $idOrder . "/status");
         exit();
     }
 
@@ -93,11 +92,11 @@ $app->get('/admin/orders', function () {
 
     for ($x = 0; $x < $pagination['pages']; $x++) {
         array_push($pages, [
-            'href' => '/admin/orders?'.http_build_query([
-                    'page' => $x+1,
+            'href' => '/admin/orders?' . http_build_query([
+                    'page' => $x + 1,
                     'search' => $search
                 ]),
-            'text'=>$x+1
+            'text' => $x + 1
         ]);
     }
 

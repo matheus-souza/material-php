@@ -1,10 +1,10 @@
 <?php
 
-use \Slim\Http\Request;
-use \Page\PageAdmin;
-use \Models\User;
-use \Models\Category;
-use \Models\Product;
+use Models\Category;
+use Models\Product;
+use Models\User;
+use Page\PageAdmin;
+use Slim\Http\Request;
 
 $app->get('/admin/categories', function () {
     User::verifyLogin();
@@ -18,11 +18,11 @@ $app->get('/admin/categories', function () {
 
     for ($x = 0; $x < $pagination['pages']; $x++) {
         array_push($pages, [
-            'href' => '/admin/categories?'.http_build_query([
-                    'page' => $x+1,
+            'href' => '/admin/categories?' . http_build_query([
+                    'page' => $x + 1,
                     'search' => $search
                 ]),
-            'text'=>$x+1
+            'text' => $x + 1
         ]);
     }
 
@@ -81,7 +81,7 @@ $app->get('/admin/categories/{idcategory}', function (Request $request) {
     $page = new PageAdmin();
 
     $page->setTpl("categories-update", array(
-        'category'=>$category->getValues()
+        'category' => $category->getValues()
     ));
 });
 
@@ -110,9 +110,9 @@ $app->get('/admin/categories/{idcategory}/products', function (Request $request)
     $page = new PageAdmin();
 
     $page->setTpl("categories-products", [
-        'category'=>$category->getValues(),
-        'productsRelated'=>$category->getProducts(),
-        'productsNotRelated'=>$category->getProducts(false)
+        'category' => $category->getValues(),
+        'productsRelated' => $category->getProducts(),
+        'productsNotRelated' => $category->getProducts(false)
     ]);
 });
 
@@ -129,7 +129,7 @@ $app->get('/admin/categories/{idcategory}/products/{idproduct}/add', function (R
 
     $category->addProduct($product);
 
-    header("Location: /admin/categories/".(int)$request->getAttribute('idcategory')."/products");
+    header("Location: /admin/categories/" . (int)$request->getAttribute('idcategory') . "/products");
     exit();
 });
 
@@ -146,7 +146,7 @@ $app->get('/admin/categories/{idcategory}/products/{idproduct}/remove', function
 
     $category->removeProduct($product);
 
-    header("Location: /admin/categories/".(int)$request->getAttribute('idcategory')."/products");
+    header("Location: /admin/categories/" . (int)$request->getAttribute('idcategory') . "/products");
     exit();
 });
 

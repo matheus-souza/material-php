@@ -1,16 +1,20 @@
 <?php
 
-use \Models\User;
-use \Models\Cart;
-use \Db\Sql;
+use Db\Sql;
+use Models\Cart;
+use Models\User;
 
-function formatPrice($vlprice) {
-    if (!$vlprice > 0) $vlprice = 0;
+function formatPrice($vlprice)
+{
+    if (!$vlprice > 0) {
+        $vlprice = 0;
+    }
 
     return number_format($vlprice, 2, ',', '.');
 }
 
-function formatDate($date) {
+function formatDate($date)
+{
     return date('d/m/Y', strtotime($date));
 }
 
@@ -18,6 +22,7 @@ function checkLogin($inadmin = true)
 {
     return User::checkLogin($inadmin);
 }
+
 function getUserName()
 {
     $user = User::getFromSession();
@@ -30,7 +35,8 @@ function getUserName()
     return $result[0]['desperson'];
 }
 
-function getCartNrQtd() {
+function getCartNrQtd()
+{
     $cart = Cart::getFromSession();
 
     $totals = $cart->getProductsTotals();
@@ -38,7 +44,8 @@ function getCartNrQtd() {
     return $totals['nrqtd'];
 }
 
-function getCartVlSubtotal() {
+function getCartVlSubtotal()
+{
     $cart = Cart::getFromSession();
 
     $price = $cart->getProductsTotals();
