@@ -1,7 +1,7 @@
 <?php 
 
 	$pessoa = array(
-		'nome' => 'Matheus',
+		'nome' => 'Nome',
 		'idade' => 19
 	);
 

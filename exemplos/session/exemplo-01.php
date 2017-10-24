@@ -2,6 +2,6 @@
 
 	require_once 'config.php';
 
-	$_SESSION["nome"] = "Matheus";
+	$_SESSION["nome"] = "Nome";
 
  ?>

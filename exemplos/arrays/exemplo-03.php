@@ -8,7 +8,7 @@
 	));
 
 	array_push($pessoas, array(
-		'nome'=>'Matheus',
+		'nome'=>'Nome',
 		'idade' => 19
 	));
 

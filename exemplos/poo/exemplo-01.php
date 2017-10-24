@@ -12,7 +12,7 @@
 	}
 
 	$matheus = new Pessoa();
-	$matheus->nome = "Matheus Souza";
+	$matheus->nome = "Nome Souza";
 	echo $matheus->falar();
 	
  ?>

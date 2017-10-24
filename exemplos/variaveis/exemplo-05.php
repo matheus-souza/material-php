@@ -1,6 +1,6 @@
 <?php 
 
-	$nome = "Matheus";
+	$nome = "Nome";
 
 	function teste() {
 		global $nome;

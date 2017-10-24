@@ -5,7 +5,7 @@
 		return "Olá $texto! $periodo!<br>";
 	}
 
-	echo ola("Matheus");
+	echo ola("Nome");
 	echo ola();
 	echo ola("Teste", "Teste");
 

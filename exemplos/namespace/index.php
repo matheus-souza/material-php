@@ -6,7 +6,7 @@
 
 	$cad = new Cadastro();
 
-	$cad->setNome("Matheus");
+	$cad->setNome("Nome");
 	$cad->setEmail("mail@mail.com");
 	$cad->setSenha("senha");
 

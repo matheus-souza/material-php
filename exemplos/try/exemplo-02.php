@@ -9,7 +9,7 @@
 	}
 
 	try {
-		trataNome("Matheus");
+		trataNome("Nome");
 		trataNome("");
 	} catch (Exception $e) {
 		echo $e->getMessage();

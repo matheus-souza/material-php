@@ -2,7 +2,7 @@
 
 	/*VARIAVEIS BASICAS*/
 	//String
-	$nome = "Matheus";
+	$nome = "Nome";
 	$site = 'www.matheush.com';
 	//int
 	$ano = 1998;
